@@ -1,0 +1,27 @@
+Sub stockdata()
+Dim WS As Worksheet
+Cells(1, "I").Value = "Ticker"
+Cells(1, "J").Value = "Total Stock Volume"
+Dim ticker_name As String
+Dim stock_volume As Double
+stock_volume = 0
+Dim Summary_Table_Row As Double
+  Summary_Table_Row = 2
+Dim open_price As Double
+Dim high_price As Double
+Dim low_price As Double
+Dim close_price As Double
+
+For i = 2 To 760192
+If Cells(i + 1, 1).Value <> Cells(i, 1).Value Then
+        ticker = Cells(i, 1).Value
+        stock_volume = stock_volume + Cells(i, 7).Value
+        Range("I" & Summary_Table_Row).Value = ticker
+        Range("J" & Summary_Table_Row).Value = stock_volume
+        Summary_Table_Row = Summary_Table_Row + 1
+        ticker_name = 0
+    Else
+    stock_volume = stock_volume + Cells(i, 7).Value
+    End If
+  Next i
+End Sub
